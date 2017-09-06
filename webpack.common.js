@@ -2,12 +2,14 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
+var isDevelopment = process.env.npm_lifecycle_event !== 'build';
+
 module.exports = {
   entry: {
     app: './src/index.js'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: isDevelopment ? '[name].bundle.js' : '[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
