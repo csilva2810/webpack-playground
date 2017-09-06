@@ -1,4 +1,5 @@
 var merge = require('webpack-merge');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -11,5 +12,10 @@ module.exports = merge(common, {
       title: 'Production'
     }),
     new UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
   ]
 });
